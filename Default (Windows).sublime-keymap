@@ -1,0 +1,159 @@
+[
+    // -------------------------------------------------------------------------------------------
+    // View (tabs) navigation
+
+    { "keys": ["g", "t"], "command": "next_view", "context": [{"key": "setting.command_mode"}] },
+
+    { "keys": ["g", "T"], "command": "prev_view", "context": [{"key": "setting.command_mode"}] },
+
+    { "keys": ["tab"], "command": "next_view_in_stack", "context": [
+        { "key": "setting.command_mode"},
+        { "key": "setting.is_widget", "operand": false },
+        { "key": "auto_complete_visible", "operand": false }] },
+
+    //   * ZQ to close
+    { "keys": ["Z", "Q"], "command": "close", "context": [{"key": "setting.command_mode"}]},
+
+    //   * `jk` as <Esc>
+    { "keys": ["j", "k"], "command": "exit_insert_mode",
+        "context": [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.is_widget", "operand": false }
+        ]
+    },
+
+    // make "ip" (inner paragraph) text object act like Sublime's "Selection: Expand to Paragraph"
+    { "keys": ["i", "p"], "command": "set_motion", "args": {
+        "motion": "expand_selection_to_paragraph"},
+        "context": [{"key": "setting.command_mode"}, {"key": "vi_can_enter_text_object"}]
+    },
+
+    //   * g [hjkl] motions
+    { "keys": ["g", "h"], "command": "set_motion", "args": {
+        "motion": "vi_move_to_first_non_white_space_character",
+        "motion_args": {"extend": true },
+        "clip_to_line": true },
+        "context": [{"key": "setting.command_mode"}]
+    },
+
+    { "keys": ["g", "j"], "command": "set_motion", "args": {
+        "motion": "vi_goto_line",
+        "motion_args": {"repeat": 1, "explicit_repeat": true, "extend": true, "ending": "eof" },
+        "linewise": true },
+        "context": [{"key": "setting.command_mode"}]
+    },
+
+    { "keys": ["g", "k"], "command": "set_motion", "args": {
+        "motion": "vi_goto_line",
+        "motion_args": {"repeat": 1, "explicit_repeat": true, "extend": true, "ending": "bof" },
+        "linewise": true },
+        "context": [{"key": "setting.command_mode"}]
+    },
+
+    { "keys": ["g", "l"], "command": "set_motion", "args": {
+        "motion": "vi_move_to_hard_eol",
+        "motion_args": {"repeat": 1, "extend": true}, "inclusive": true, "clip_to_line": true },
+        "context": [{"key": "setting.command_mode"}]
+    },
+
+    // -------------------------------------------------------------------------------------------
+    // vim-unimpaired
+
+    { "keys": ["[", "<character>"], "command": "noop", "context": [{"key": "setting.command_mode"}] },
+
+    { "keys": ["[", "e"], "command": "swap_line_up", "context": [{"key": "setting.command_mode"}] },
+
+    { "keys": ["]", "e"], "command": "swap_line_down", "context": [{"key": "setting.command_mode"}] },
+
+    { "keys": ["[", "t"], "command": "prev_view", "context": [{"key": "setting.command_mode"}] },
+
+    { "keys": ["]", "t"], "command": "next_view", "context": [{"key": "setting.command_mode"}] },
+
+    // -------------------------------------------------------------------------------------------
+    // vim-surround
+
+    { "keys": ["S", "["], "command": "insert_snippet", "args": {"contents": "[${0:$SELECTION}]"},
+        "context": [
+            { "key": "setting.command_mode" },
+            { "key": "selection_empty", "operand": false },
+        ]
+    },
+
+    { "keys": ["S", "{"], "command": "insert_snippet", "args": {"contents": "{${0:$SELECTION}}"},
+        "context": [
+            { "key": "setting.command_mode" },
+            { "key": "selection_empty", "operand": false },
+        ]
+    },
+    
+    // -------------------------------------------------------------------------------------------
+    // <C-w> window management (with Origami commands)
+
+    { "keys": ["ctrl+w"], "command": "noop" }, // safeguard
+
+    { "keys": ["ctrl+w", "c"], "command": "close_pane" },
+    { "keys": ["ctrl+w", "ctrl+c"], "command": "close_pane" },
+    { "keys": ["ctrl+shift+w"], "command": "close_file" },
+    { "keys": ["ctrl+w", "q"], "command": "close_file" },
+    { "keys": ["ctrl+w", "ctrl+q"], "command": "close_file" },
+
+    { "keys": ["ctrl+w", "n"], "command": "new_pane" },
+
+    { "keys": ["ctrl+w", "o"], "command": "set_layout",
+        "args":
+        {
+            "cols": [0.0, 1.0],     // vertical splitters
+            "rows": [0.0, 1.0],     // horizontal splitters
+            "cells": [[0, 0, 1, 1]] // x1, y1, x2, y2
+        }
+    },
+    { "keys": ["ctrl+w", "o"], "command": "unselect_others", "context": [{"key": "group_has_multiselect"}]},
+
+    { "keys": ["ctrl+w", "h"], "command": "travel_to_pane", "args": {"direction": "left"} },
+    { "keys": ["ctrl+w", "j"], "command": "travel_to_pane", "args": {"direction": "down"} },
+    { "keys": ["ctrl+w", "k"], "command": "travel_to_pane", "args": {"direction": "up"} },
+    { "keys": ["ctrl+w", "l"], "command": "travel_to_pane", "args": {"direction": "right"} },
+
+    { "keys": ["ctrl+w", "ctrl+h"], "command": "travel_to_pane", "args": {"direction": "left"} },
+    { "keys": ["ctrl+w", "ctrl+j"], "command": "travel_to_pane", "args": {"direction": "down"} },
+    { "keys": ["ctrl+w", "ctrl+l"], "command": "travel_to_pane", "args": {"direction": "right"} },
+    { "keys": ["ctrl+w", "ctrl+k"], "command": "travel_to_pane", "args": {"direction": "up"} },
+
+    { "keys": ["ctrl+w", "ctrl+h"], "command": "focus_to_left", "context": [{ "key": "group_has_multiselect" }] },
+    { "keys": ["ctrl+w",      "h"], "command": "focus_to_left", "context": [{ "key": "group_has_multiselect" }] },
+    { "keys": ["ctrl+w", "ctrl+l"], "command": "focus_to_right", "context": [{ "key": "group_has_multiselect" }] },
+    { "keys": ["ctrl+w",      "l"], "command": "focus_to_right", "context": [{ "key": "group_has_multiselect" }] },
+
+    { "keys": ["ctrl+w", "H"], "command": "carry_file_to_pane", "args": {"direction": "left",  "create_new_if_necessary": true} },
+    { "keys": ["ctrl+w", "J"], "command": "carry_file_to_pane", "args": {"direction": "down",  "create_new_if_necessary": true} },
+    { "keys": ["ctrl+w", "L"], "command": "carry_file_to_pane", "args": {"direction": "right", "create_new_if_necessary": true} },
+    { "keys": ["ctrl+w", "K"], "command": "carry_file_to_pane", "args": {"direction": "up",    "create_new_if_necessary": true} },
+
+    { "keys": ["ctrl+w", "alt+h"], "command": "clone_file_to_pane", "args": {"direction": "left"} },
+    { "keys": ["ctrl+w", "alt+j"], "command": "clone_file_to_pane", "args": {"direction": "down"} },
+    { "keys": ["ctrl+w", "alt+l"], "command": "clone_file_to_pane", "args": {"direction": "right"} },
+    { "keys": ["ctrl+w", "alt+k"], "command": "clone_file_to_pane", "args": {"direction": "up"} },
+
+    { "keys": ["ctrl+w",      "d"], "command": "clone_file" },
+    { "keys": ["ctrl+w", "ctrl+s"], "command": "clone_file_to_pane", "args": {"direction": "down",  "create_new_if_necessary": true}},
+    { "keys": ["ctrl+w",      "s"], "command": "clone_file_to_pane", "args": {"direction": "down",  "create_new_if_necessary": true}},
+    { "keys": ["ctrl+w", "ctrl+v"], "command": "clone_file_to_pane", "args": {"direction": "right", "create_new_if_necessary": true}},
+    { "keys": ["ctrl+w",      "v"], "command": "clone_file_to_pane", "args": {"direction": "right", "create_new_if_necessary": true}},
+
+    //   * zoom
+    { "keys": ["alt+z"], "command": "zoom_pane", "args": {"fraction": 0.9} },
+    { "keys": ["alt+="], "command": "unzoom_pane", "args": {} },
+    { "keys": ["alt+shift+z"], "command": "unzoom_pane", "args": {} },
+
+    //   * Temporary split with [<C-w>] tab [m]ultiselect
+    { "keys": ["ctrl+w", "ctrl+m"], "command": "clone_file", "args": {"add_to_selection": true, "retain_viewport_position": true} },
+    { "keys": ["ctrl+w",      "m"], "command": "clone_file", "args": {"add_to_selection": true, "retain_viewport_position": true} },
+    { "keys": ["ctrl+w", "ctrl+m"], "command": "close_file_without_saving", "context": [{ "key": "group_has_multiselect" }] },
+    { "keys": ["ctrl+w",      "m"], "command": "close_file_without_saving", "context": [{ "key": "group_has_multiselect" }] },
+
+    // -------------------------------------------------------------------------------------------
+    // LSP
+
+    { "keys": ["g", "d"], "command": "lsp_symbol_definition", "context": [{"key": "setting.command_mode"}]},
+
+    { "keys": ["g", "r"], "command": "lsp_symbol_references", "context": [{"key": "setting.command_mode"}]},]
