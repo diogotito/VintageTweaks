@@ -148,8 +148,8 @@
     //   * Temporary split with [<C-w>] tab [m]ultiselect
     { "keys": ["ctrl+w", "ctrl+m"], "command": "clone_file", "args": {"add_to_selection": true, "retain_viewport_position": true} },
     { "keys": ["ctrl+w",      "m"], "command": "clone_file", "args": {"add_to_selection": true, "retain_viewport_position": true} },
-    { "keys": ["ctrl+w", "ctrl+m"], "command": "close_file_without_saving", "context": [{ "key": "group_has_multiselect" }] },
-    { "keys": ["ctrl+w",      "m"], "command": "close_file_without_saving", "context": [{ "key": "group_has_multiselect" }] },
+    { "keys": ["ctrl+w", "ctrl+m"], "command": "close_file_without_prompting", "context": [{ "key": "group_has_multiselect" }] },
+    { "keys": ["ctrl+w",      "m"], "command": "close_file_without_prompting", "context": [{ "key": "group_has_multiselect" }] },
 
     // -------------------------------------------------------------------------------------------
     // LSP
