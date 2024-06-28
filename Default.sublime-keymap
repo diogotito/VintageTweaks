@@ -11,6 +11,21 @@
         { "key": "setting.is_widget", "operand": false },
         { "key": "auto_complete_visible", "operand": false }] },
 
+    // -------------------------------------------------------------------------------------------
+    // Sidebar (courtesy of NeoVintageous)
+
+    {"keys": ["J"], "command": "move_to", "args": {"to": "eol", "extend": false}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+    {"keys": ["P"], "command": "move_to", "args": {"to": "bol", "extend": false}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+    {"keys": ["h"], "command": "move", "args": {"by": "characters", "forward": false}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+    {"keys": ["j"], "command": "move", "args": {"by": "lines", "forward": true}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+    {"keys": ["k"], "command": "move", "args": {"by": "lines", "forward": false}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+    {"keys": ["l"], "command": "move", "args": {"by": "characters", "forward": true}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+    {"keys": ["p"], "command": "move", "args": {"by": "characters", "forward": false}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+    {"keys": ["q"], "command": "neovintageous", "args": {"action": "toggle_side_bar"}, "context": [{"key": "control", "operand": "sidebar_tree"}]},
+
+    // -------------------------------------------------------------------------------------------
+    // Vim NORMAL-mode tweaks
+
     //   * ZQ to close
     { "keys": ["Z", "Q"], "command": "close", "context": [{"key": "setting.command_mode"}]},
 
@@ -62,11 +77,9 @@
     { "keys": ["[", "<character>"], "command": "noop", "context": [{"key": "setting.command_mode"}] },
 
     { "keys": ["[", "e"], "command": "swap_line_up", "context": [{"key": "setting.command_mode"}] },
-
     { "keys": ["]", "e"], "command": "swap_line_down", "context": [{"key": "setting.command_mode"}] },
 
     { "keys": ["[", "t"], "command": "prev_view", "context": [{"key": "setting.command_mode"}] },
-
     { "keys": ["]", "t"], "command": "next_view", "context": [{"key": "setting.command_mode"}] },
 
     // -------------------------------------------------------------------------------------------
@@ -155,5 +168,5 @@
     // LSP
 
     { "keys": ["g", "d"], "command": "lsp_symbol_definition", "context": [{"key": "setting.command_mode"}]},
-
-    { "keys": ["g", "r"], "command": "lsp_symbol_references", "context": [{"key": "setting.command_mode"}]},]
+    { "keys": ["g", "r"], "command": "lsp_symbol_references", "context": [{"key": "setting.command_mode"}]},
+]
